@@ -18,3 +18,13 @@ export const newPost = (resource, user) => {
     }
   })
 }
+
+export const indexPosts = user => {
+  return axios({
+    url: apiUrl + '/resources/',
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    }
+  })
+}

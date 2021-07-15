@@ -7,5 +7,7 @@ export default {
   changePasswordSuccess: 'Password changed successfully!',
   changePasswordFailure: 'Failed to change password. Check your old password and try again.',
   newPostSuccess: 'Successfully created a new resource!',
-  newPostFailure: 'Failed to create a post.'
+  newPostFailure: 'Failed to create a post.',
+  indexPostsSuccess: 'Here are all of the posts!',
+  indexPostsFailure: 'Failed to get all posts.'
 }
