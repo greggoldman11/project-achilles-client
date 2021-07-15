@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { indexPosts } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
 
 import Spinner from 'react-bootstrap/Spinner'
+import Button from 'react-bootstrap/Button'
 
 class IndexPosts extends Component {
   constructor (props) {
@@ -31,7 +32,6 @@ class IndexPosts extends Component {
       })
       )
   }
-
   render () {
     let resourcesJSX = ''
     const { resources } = this.state
@@ -47,7 +47,8 @@ class IndexPosts extends Component {
           <div key={resource.id}>
             <h2>{resource.name}</h2>
             <p>{resource.description}</p>
-            <a href={resource.link} target="_blank" rel="noopener noreferrer">Visit this Resource!</a>
+            <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
+            <Button variant="primary"><Link className="button-link" to={`/resources/${resource.id}`}>Resource Page</Link></Button>
           </div>
         )
       })

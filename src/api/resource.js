@@ -28,3 +28,12 @@ export const indexPosts = user => {
     }
   })
 }
+export const showPost = (user) => {
+  return axios({
+    url: apiUrl + '/resources/',
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    }
+  })
+}
