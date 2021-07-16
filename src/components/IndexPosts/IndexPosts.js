@@ -35,7 +35,6 @@ class IndexPosts extends Component {
   render () {
     let resourcesJSX = ''
     const { resources } = this.state
-    console.log(resources)
     if (resources === null) {
       resourcesJSX = <Spinner animation="border" variant="warning" />
     } else if (resources.length === 0) {

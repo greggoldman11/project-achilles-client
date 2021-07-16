@@ -12,13 +12,24 @@ class ShowPost extends Component {
     super(props)
 
     this.state = {
-      resource: null
+      resource: null,
+      isOwner: false
     }
   }
   componentDidMount () {
     const { msgAlert, user, match } = this.props
     showPost(user, match.params)
       .then(res => this.setState({ resource: res.data.resource }))
+      .then(() => console.log(this.state))
+      .then(() => {
+        if (this.state.resource.owner === this.props.user.id) {
+          this.setState({ isOwner: true })
+          console.log(this.state.isOwner)
+        } else {
+          this.setState({ isOwner: false })
+          console.log(this.state.isOwner)
+        }
+      })
       .then(() => msgAlert({
         heading: 'Show Success',
         message: messages.showPostsSuccess,
@@ -33,18 +44,17 @@ class ShowPost extends Component {
   }
   render () {
     let resourceJSX = ''
-    const { resource } = this.state
+    const { resource, isOwner } = this.state
     if (!resource) {
       resourceJSX = <Spinner animation="border" variant="warning" />
-    } else if (resource.length === 0) {
-      resourceJSX = <p>No Resources Available</p>
     } else {
       resourceJSX =
-      <div key={resource.id}>
-        <h2>{resource.name}</h2>
-        <p>{resource.description}</p>
-        <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
-      </div>
+        <div key={resource.id}>
+          <h2>{resource.name}</h2>
+          <p>{resource.description}</p>
+          <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
+          {isOwner ? <Button><Link className="button-link" to={`/resources/${resource.id}/update`}>Update</Link></Button> : ''}
+        </div>
     }
     return (
       <Fragment>

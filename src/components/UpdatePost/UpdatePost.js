@@ -86,7 +86,6 @@ class UpdatePost extends Component {
   render () {
     let action = null
     const { name, description, category, link, owner } = this.state.resource
-    console.log(owner, this.props.user.id)
     if (owner === this.props.user.id) {
       action = (
         <div className="row">
