@@ -9,5 +9,12 @@ export default {
   newPostSuccess: 'Successfully created a new resource!',
   newPostFailure: 'Failed to create a post.',
   indexPostsSuccess: 'Here are all of the posts!',
-  indexPostsFailure: 'Failed to get all posts.'
+  indexPostsFailure: 'Failed to get all posts.',
+  showPostSuccess: 'Here is one of the posts!',
+  showPostFailure: 'Failed to get the post.',
+  deletePostSuccess: 'Successfully deleted this post!',
+  deletPostFailure: 'Failed to delete this post.',
+  updatePostSuccess: 'Successfully updated this post!',
+  updatePostFailure: 'Failed to update this post.',
+  unauthorizedAccess: 'You are not authorized to access this page.'
 }

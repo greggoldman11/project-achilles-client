@@ -12,7 +12,8 @@ class IndexPosts extends Component {
     super(props)
 
     this.state = {
-      resources: null
+      resources: null,
+      liked: false
     }
   }
 
@@ -32,6 +33,9 @@ class IndexPosts extends Component {
       })
       )
   }
+  toggleLike = () => this.setState(prevState => {
+    return { liked: !prevState.liked }
+  })
   render () {
     let resourcesJSX = ''
     const { resources } = this.state
@@ -50,6 +54,12 @@ class IndexPosts extends Component {
             <p>
               <Button variant="primary"><Link className="button-link" to={`/resources/${resource.id}`}>{resource.name}</Link></Button>
             </p>
+            <Button
+              variant="primary"
+              onClick={this.toggleLike}
+            >
+              {this.state.liked ? 'Unlike' : 'Like'}
+            </Button>
           </div>
         )
       })

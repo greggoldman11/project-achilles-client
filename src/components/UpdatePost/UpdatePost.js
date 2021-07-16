@@ -28,7 +28,6 @@ class UpdatePost extends Component {
       .then(res => this.setState({ resource: res.data.resource }))
       .catch(console.error)
   }
-
   handleChange = event => {
     event.persist()
 
@@ -69,15 +68,15 @@ class UpdatePost extends Component {
     deletePost(user, this.state.resource)
       .then(() => msgAlert({
         heading: 'Delete Post Success',
-        message: messages.updatePostSuccess,
+        message: messages.deletePostSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/resources'))
       .catch(error => {
         this.setState({ name: '', description: '', category: '', link: '' })
         msgAlert({
           heading: 'Delete Post Failed with error: ' + error.message,
-          message: messages.updatePostFailure,
+          message: messages.deletPostFailure,
           variant: 'danger'
         })
       })
@@ -150,9 +149,7 @@ class UpdatePost extends Component {
       )
     } else {
       action = (
-        <div>
-         nope
-        </div>
+        <h1>Access Denied</h1>
       )
     }
     return action
