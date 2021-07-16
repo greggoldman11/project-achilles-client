@@ -15,7 +15,6 @@ class ShowPost extends Component {
       resource: null
     }
   }
-
   componentDidMount () {
     const { msgAlert, user, match } = this.props
     showPost(user, match.params)
@@ -40,13 +39,12 @@ class ShowPost extends Component {
     } else if (resource.length === 0) {
       resourceJSX = <p>No Resources Available</p>
     } else {
-      resourceJSX = (
-        <div key={resource.id}>
-          <h2>{resource.name}</h2>
-          <p>{resource.description}</p>
-          <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
-        </div>
-      )
+      resourceJSX =
+      <div key={resource.id}>
+        <h2>{resource.name}</h2>
+        <p>{resource.description}</p>
+        <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
+      </div>
     }
     return (
       <Fragment>

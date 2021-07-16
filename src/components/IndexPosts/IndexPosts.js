@@ -48,7 +48,9 @@ class IndexPosts extends Component {
             <h2>{resource.name}</h2>
             <p>{resource.description}</p>
             <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
-            <Button variant="primary"><Link className="button-link" to={`/resources/${resource.id}`}>{resource.name}</Link></Button>
+            <p>
+              <Button variant="primary"><Link className="button-link" to={`/resources/${resource.id}`}>{resource.name}</Link></Button>
+            </p>
           </div>
         )
       })

@@ -37,3 +37,31 @@ export const showPost = (user, resources) => {
     }
   })
 }
+export const deletePost = (user, resources) => {
+  return axios({
+    url: apiUrl + `/resources/${resources.id}/`,
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    }
+  })
+}
+
+export const updatePost = (user, resource) => {
+  return axios({
+    url: apiUrl + `/resources/${resource.id}/`,
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    },
+    data: {
+      resource: {
+        name: resource.name,
+        description: resource.description,
+        category: resource.category,
+        link: resource.link,
+        owner: user.id
+      }
+    }
+  })
+}

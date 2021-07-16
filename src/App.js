@@ -12,6 +12,7 @@ import ChangePassword from './components/ChangePassword/ChangePassword'
 import NewPost from './components/NewPost/NewPost'
 import IndexPosts from './components/IndexPosts/IndexPosts'
 import ShowPost from './components/ShowPost/ShowPost'
+import UpdatePost from './components/UpdatePost/UpdatePost'
 
 class App extends Component {
   constructor (props) {
@@ -76,6 +77,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/resources/:id' render={() => (
             <ShowPost msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/resources/:id/update' render={({ match }) => (
+            <UpdatePost msgAlert={this.msgAlert} user={user} match={match} />
           )} />
         </main>
       </Fragment>
