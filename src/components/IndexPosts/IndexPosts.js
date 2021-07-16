@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
-import { indexPosts } from '../../api/resource'
+import { indexPosts, updateLikes } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
 
 import Spinner from 'react-bootstrap/Spinner'
-import Button from 'react-bootstrap/Button'
+
+import ResourceCard from '../ResourceCard/ResourceCard'
 
 class IndexPosts extends Component {
   constructor (props) {
@@ -33,12 +34,21 @@ class IndexPosts extends Component {
       })
       )
   }
-  toggleLike = () => this.setState(prevState => {
-    return { liked: !prevState.liked }
-  })
+  handleClick = () => {
+    const { user, match } = this.props
+    console.log(this.state.resources[0], ' in handleClick')
+    updateLikes(user, match.params)
+      .then(res => console.log(res))
+      // .then(res => this.setState({ likes: res.data.resources[0].likes }))
+    // this.setState(prevState => {
+    //   return { liked: !prevState.liked }
+    // })
+      .catch(console.error)
+  }
   render () {
     let resourcesJSX = ''
     const { resources } = this.state
+    console.log(resources)
     if (resources === null) {
       resourcesJSX = <Spinner animation="border" variant="warning" />
     } else if (resources.length === 0) {
@@ -47,20 +57,15 @@ class IndexPosts extends Component {
       resourcesJSX =
       resources.map(resource => {
         return (
-          <div key={resource.id}>
-            <h2>{resource.name}</h2>
-            <p>{resource.description}</p>
-            <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
-            <p>
-              <Button variant="primary"><Link className="button-link" to={`/resources/${resource.id}`}>{resource.name}</Link></Button>
-            </p>
-            <Button
-              variant="primary"
-              onClick={this.toggleLike}
-            >
-              {this.state.liked ? 'Unlike' : 'Like'}
-            </Button>
-          </div>
+          <ResourceCard
+            user={this.props.user}
+            key={resource.id}
+            id={resource.id}
+            name={resource.name}
+            description={resource.description}
+            category={resource.category}
+            link={resource.link}
+          />
         )
       })
     }
