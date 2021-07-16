@@ -28,9 +28,9 @@ export const indexPosts = user => {
     }
   })
 }
-export const showPost = (user) => {
+export const showPost = (user, resources) => {
   return axios({
-    url: apiUrl + '/resources/',
+    url: apiUrl + `/resources/${resources.id}/`,
     method: 'GET',
     headers: {
       'Authorization': `Token ${user.token}`

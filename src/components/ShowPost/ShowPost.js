@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { showPost } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
 
 import Spinner from 'react-bootstrap/Spinner'
+import Button from 'react-bootstrap/Button'
 
 class ShowPost extends Component {
   constructor (props) {
@@ -16,11 +17,9 @@ class ShowPost extends Component {
   }
 
   componentDidMount () {
-    const { msgAlert, user } = this.props
-    const { match } = this.props
-    console.log(match)
-    showPost(user)
-      .then(res => this.setState({ resource: res.data.resources }))
+    const { msgAlert, user, match } = this.props
+    showPost(user, match.params)
+      .then(res => this.setState({ resource: res.data.resource }))
       .then(() => msgAlert({
         heading: 'Show Success',
         message: messages.showPostsSuccess,
@@ -36,22 +35,18 @@ class ShowPost extends Component {
   render () {
     let resourceJSX = ''
     const { resource } = this.state
-    console.log(resource)
-    if (resource === null) {
+    if (!resource) {
       resourceJSX = <Spinner animation="border" variant="warning" />
     } else if (resource.length === 0) {
       resourceJSX = <p>No Resources Available</p>
     } else {
-      resourceJSX =
-      resource.map(resource => {
-        return (
-          <div key={resource.id}>
-            <h2>{resource.name}</h2>
-            <p>{resource.description}</p>
-            <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
-          </div>
-        )
-      })
+      resourceJSX = (
+        <div key={resource.id}>
+          <h2>{resource.name}</h2>
+          <p>{resource.description}</p>
+          <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
+        </div>
+      )
     }
     return (
       <Fragment>
@@ -59,6 +54,7 @@ class ShowPost extends Component {
         <div>
           {resourceJSX}
         </div>
+        <Button variant="primary"><Link className="button-link" to={'/resources/'}>See All Resources</Link></Button>
       </Fragment>
     )
   }

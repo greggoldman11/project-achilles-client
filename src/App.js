@@ -71,10 +71,10 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/new-post' render={() => (
             <NewPost msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/all-posts' render={() => (
+          <AuthenticatedRoute user={user} exact path='/resources' render={() => (
             <IndexPosts msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/all-posts' render={() => (
+          <AuthenticatedRoute user={user} exact path='/resources/:id' render={() => (
             <ShowPost msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
