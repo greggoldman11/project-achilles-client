@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'react-router-dom'
 
-import { indexPosts, updateLikes } from '../../api/resource'
+import { indexPosts } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
 
 import Spinner from 'react-bootstrap/Spinner'
@@ -34,17 +34,9 @@ class IndexPosts extends Component {
       })
       )
   }
-  handleClick = () => {
-    const { user, match } = this.props
-    console.log(this.state.resources[0], ' in handleClick')
-    updateLikes(user, match.params)
-      .then(res => console.log(res))
-      // .then(res => this.setState({ likes: res.data.resources[0].likes }))
-    // this.setState(prevState => {
-    //   return { liked: !prevState.liked }
-    // })
-      .catch(console.error)
-  }
+  handleClick = () => this.setState(prevState => {
+    return { liked: !prevState.liked }
+  })
   render () {
     let resourcesJSX = ''
     const { resources } = this.state
