@@ -5,8 +5,10 @@ import { indexPosts } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
 
 import Spinner from 'react-bootstrap/Spinner'
+// import Button from 'react-bootstrap/Button'
 
 import ResourceCard from '../ResourceCard/ResourceCard'
+import CommentCard from '../CommentCard/CommentCard'
 
 class IndexPosts extends Component {
   constructor (props) {
@@ -22,6 +24,7 @@ class IndexPosts extends Component {
     const { msgAlert, user } = this.props
     indexPosts(user)
       .then(res => this.setState({ resources: res.data.resources }))
+      .then(console.log(this.state.resources))
       .then(() => msgAlert({
         heading: 'Index Success',
         message: messages.indexPostsSuccess,
@@ -49,15 +52,22 @@ class IndexPosts extends Component {
       resourcesJSX =
       resources.map(resource => {
         return (
-          <ResourceCard
-            user={this.props.user}
-            key={resource.id}
-            id={resource.id}
-            name={resource.name}
-            description={resource.description}
-            category={resource.category}
-            link={resource.link}
-          />
+          <Fragment key={resource.id}>
+            <ResourceCard
+              user={this.props.user}
+              key={resource.id}
+              id={resource.id}
+              name={resource.name}
+              description={resource.description}
+              category={resource.category}
+              link={resource.link}
+            />
+            <CommentCard
+              resource={resource.id}
+              user={this.props.user}
+              comments={resource.comments}
+            />
+          </Fragment>
         )
       })
     }

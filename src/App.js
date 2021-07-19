@@ -13,6 +13,7 @@ import NewPost from './components/NewPost/NewPost'
 import IndexPosts from './components/IndexPosts/IndexPosts'
 import ShowPost from './components/ShowPost/ShowPost'
 import UpdatePost from './components/UpdatePost/UpdatePost'
+import IndexComments from './components/IndexComments/IndexComments'
 
 class App extends Component {
   constructor (props) {
@@ -73,13 +74,18 @@ class App extends Component {
             <NewPost msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/resources' render={() => (
-            <IndexPosts msgAlert={this.msgAlert} user={user} />
+            <Fragment>
+              <IndexPosts msgAlert={this.msgAlert} user={user} />
+            </Fragment>
           )} />
           <AuthenticatedRoute user={user} exact path='/resources/:id' render={() => (
             <ShowPost msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} exact path='/resources/:id/update' render={({ match }) => (
             <UpdatePost msgAlert={this.msgAlert} user={user} match={match} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/comments' render={() => (
+            <IndexComments msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>

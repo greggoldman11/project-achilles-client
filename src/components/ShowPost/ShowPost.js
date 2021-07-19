@@ -3,7 +3,8 @@ import { withRouter, Link } from 'react-router-dom'
 
 import { showPost } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
-
+import ResourceCard from '../ResourceCard/ResourceCard'
+import CommentCard from '../CommentCard/CommentCard'
 import Spinner from 'react-bootstrap/Spinner'
 import Button from 'react-bootstrap/Button'
 
@@ -49,12 +50,19 @@ class ShowPost extends Component {
       resourceJSX = <Spinner animation="border" variant="warning" />
     } else {
       resourceJSX =
-        <div key={resource.id}>
-          <h2>{resource.name}</h2>
-          <p>{resource.description}</p>
-          <a href={resource.link} target="_blank" rel="noopener noreferrer">{resource.link}</a>
-          {isOwner ? <Button><Link className="button-link" to={`/resources/${resource.id}/update`}>Update</Link></Button> : ''}
-        </div>
+      <Fragment key={resource.id}>
+        <ResourceCard
+          user={this.props.user}
+          key={resource.id}
+          id={resource.id}
+          name={resource.name}
+          description={resource.description}
+          category={resource.category}
+          link={resource.link}
+        />
+        {isOwner ? <Button><Link className="button-link" to={`/resources/${resource.id}/update`}>Update</Link></Button> : ''}
+        <CommentCard comment={resource.comments}/>
+      </Fragment>
     }
     return (
       <Fragment>

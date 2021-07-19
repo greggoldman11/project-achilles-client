@@ -65,3 +65,56 @@ export const updatePost = (user, resource) => {
     }
   })
 }
+export const indexComments = user => {
+  return axios({
+    url: apiUrl + '/comments/',
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    }
+  })
+}
+export const newComment = (comment, user, resource) => {
+  return axios({
+    url: apiUrl + '/comments/',
+    method: 'POST',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    },
+    data: {
+      comments: {
+        name: comment.name,
+        body: comment.body,
+        resource: resource,
+        owner: user.id
+      }
+    }
+  })
+}
+
+export const deleteComment = (user, comment) => {
+  return axios({
+    url: apiUrl + `/comments/${comment.id}/`,
+    method: 'DELETE',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    }
+  })
+}
+
+export const updateComment = (user, comment) => {
+  return axios({
+    url: apiUrl + `/comments/${comment.id}/`,
+    method: 'PATCH',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    },
+    data: {
+      coment: {
+        name: comment.name,
+        description: comment.body,
+        owner: user.id
+      }
+    }
+  })
+}
