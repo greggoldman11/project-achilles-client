@@ -78,6 +78,7 @@ class ShowPost extends Component {
               resource={resource.id}
               user={this.props.user}
               comments={resource.comments}
+              msgAlert={this.props.msgAlert}
             />
             : ''
           }

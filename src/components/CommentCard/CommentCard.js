@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button'
 import ListGroup from 'react-bootstrap/ListGroup'
 import NewComment from '../NewComment/NewComment'
 
-const CommentCard = ({ comments, user, resource }) => (
+const CommentCard = ({ comments, user, resource, msgAlert }) => (
   <Card className="card" key={comments.id}>
     <Card.Body className="card-body">
       <Card.Title className="card-title">{comments.name}</Card.Title>
@@ -21,7 +21,7 @@ const CommentCard = ({ comments, user, resource }) => (
             </ListGroup.Item>
           )}
         </ListGroup>
-        <NewComment user={user} resource={resource}/>
+        <NewComment user={user} resource={resource} msgAlert={msgAlert}/>
       </Card.Text>
     </Card.Body>
   </Card>
