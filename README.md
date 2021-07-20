@@ -34,3 +34,16 @@ I focused on building out the back end first and then worked on the front end.
 
 ## Screenshot
 <img width="1427" alt="Screen Shot 2021-07-20 at 3 58 29 PM" src="https://user-images.githubusercontent.com/81181703/126387621-3fd2512d-3efc-4bad-9024-3ddb4338604c.png">
+
+## User Stories
+- As an unregistered user, I would like to sign up with email and password
+- As a registered user, I would like to sign in with email and password
+- As a signed in user, I would like to
+- change password.
+- sign out
+- see all resources
+- create a new resource
+- see a specific resource
+- update or delete my resource
+- comment on other resources
+- update or delete my comments
