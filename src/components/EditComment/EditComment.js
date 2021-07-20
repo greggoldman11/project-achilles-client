@@ -7,7 +7,7 @@ import messages from '../AutoDismissAlert/messages'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 
-class UpdateComment extends Component {
+class EditComment extends Component {
   constructor (props) {
     super(props)
 
@@ -49,7 +49,7 @@ class UpdateComment extends Component {
         message: messages.updateCommentSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push(`/resources/${this.state.comment.resource}`))
       .catch(error => {
         this.setState({ name: '', body: '' })
         msgAlert({
@@ -68,12 +68,12 @@ class UpdateComment extends Component {
         message: messages.deleteCommentSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/resources'))
+      .then(() => history.push(`/resources/${this.state.comment.resource}`))
       .catch(error => {
         this.setState({ name: '', body: '' })
         msgAlert({
           heading: 'Delete Comment Failed with error: ' + error.message,
-          message: messages.deletCommentFailure,
+          message: messages.deleteCommentFailure,
           variant: 'danger'
         })
       })
@@ -133,4 +133,4 @@ class UpdateComment extends Component {
   }
 }
 
-export default withRouter(UpdateComment)
+export default withRouter(EditComment)

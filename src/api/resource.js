@@ -119,7 +119,7 @@ export const updateComment = (user, comment) => {
       'Authorization': `Token ${user.token}`
     },
     data: {
-      coment: {
+      comment: {
         name: comment.name,
         description: comment.body,
         owner: user.id

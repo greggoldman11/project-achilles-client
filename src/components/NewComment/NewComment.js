@@ -26,9 +26,9 @@ class NewComment extends Component {
 
     const { history, user, resource } = this.props
     newComment(this.state, user, resource)
-      .then(() => history.push('/'))
+      .then(() => history.push('/resources'))
       .catch(error => {
-        this.setState({ name: '', description: '', category: '', link: '' })
+        this.setState({ name: '', body: '' })
         console.log(error)
       })
   }

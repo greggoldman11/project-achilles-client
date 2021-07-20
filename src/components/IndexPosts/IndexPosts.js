@@ -54,6 +54,7 @@ class IndexPosts extends Component {
               description={resource.description}
               category={resource.category}
               link={resource.link}
+              comments={resource.comments}
             />
           </Fragment>
         )

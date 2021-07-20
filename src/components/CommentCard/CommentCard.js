@@ -3,25 +3,24 @@ import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import NewComment from '../NewComment/NewComment'
-// import EditComment from '../EditComment/EditComment'
 
-const CommentCard = (comment) => (
-  <Card className="card" key={comment.id}>
+const CommentCard = ({ comments, user, resource }) => (
+  <Card className="card" key={comments.id}>
     <Card.Body className="card-body">
-      <Card.Title className="card-title">{comment.name}</Card.Title>
+      <Card.Title className="card-title">{comments.name}</Card.Title>
       <Card.Text className="card-text">
         <div>
-          {comment.comments.map(comment =>
+          {comments.map(comment =>
             <p key={comment.id}>
               {comment.name} commented:
               <br></br>
-              --------------
-              {comment.body}
-              <Button variant="primary"><Link className="button-link" to={`/comments/${comment.id}`}>{comment.body}</Link></Button>
+              { user.id === comment.owner
+                ? <Button variant="primary"><Link className="button-link" to={`/comments/${comment.id}`}>{comment.body}</Link></Button>
+                : `${comment.body}` }
             </p>
           )}
         </div>
-        <NewComment user={comment.user} resource={comment.resource}/>
+        <NewComment user={user} resource={resource}/>
       </Card.Text>
     </Card.Body>
   </Card>

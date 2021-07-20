@@ -15,14 +15,14 @@ class ShowPost extends Component {
     this.state = {
       resource: null,
       isOwner: false,
-      hideComments: false
+      hideComments: false,
+      isCommentOwner: false
     }
   }
   componentDidMount () {
     const { msgAlert, user, match } = this.props
     showPost(user, match.params)
       .then(res => this.setState({ resource: res.data.resource }))
-      .then(() => console.log(this.state))
       .then(() => {
         if (this.state.resource.owner === this.props.user.id) {
           this.setState({ isOwner: true })
@@ -30,6 +30,13 @@ class ShowPost extends Component {
         } else {
           this.setState({ isOwner: false })
           console.log(this.state.isOwner)
+        }
+      })
+      .then(() => {
+        if (this.state.resource.comments.owner === this.props.user.id) {
+          this.setState({ isCommentOwner: true })
+        } else {
+          this.setState({ isCommentOwner: false })
         }
       })
       .then(() => msgAlert({
@@ -67,7 +74,7 @@ class ShowPost extends Component {
         />
         {isOwner ? <Button><Link className="button-link" to={`/resources/${resource.id}/update`}>Update</Link></Button> : ''}
         <Fragment>
-          <Button onClick={this.toggleComments}>Show Comments</Button>
+          <Button onClick={this.toggleComments}>{this.state.hideComments ? 'Hide Comments' : 'Show Comments'}</Button>
           {this.state.hideComments
             ? <CommentCard
               resource={resource.id}
