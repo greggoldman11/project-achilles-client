@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 
 import { newComment } from '../../api/resource'
+import messages from '../AutoDismissAlert/messages'
 
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
@@ -24,12 +25,21 @@ class NewComment extends Component {
   onNewComment = event => {
     event.preventDefault()
 
-    const { history, user, resource } = this.props
+    const { history, user, resource, msgAlert } = this.props
     newComment(this.state, user, resource)
+      .then(() => msgAlert({
+        heading: 'New Comment Success',
+        message: messages.newCommentSuccess,
+        variant: 'success'
+      }))
       .then(() => history.push('/resources'))
       .catch(error => {
         this.setState({ name: '', body: '' })
-        console.log(error)
+        msgAlert({
+          heading: 'New Comment Failed with error: ' + error.message,
+          message: messages.newCommentFailure,
+          variant: 'danger'
+        })
       })
   }
 

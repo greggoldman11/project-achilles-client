@@ -21,7 +21,6 @@ class IndexPosts extends Component {
     const { msgAlert, user } = this.props
     indexPosts(user)
       .then(res => this.setState({ resources: res.data.resources }))
-      .then(console.log(this.state.resources))
       .then(() => msgAlert({
         heading: 'Index Success',
         message: messages.indexPostsSuccess,
@@ -61,12 +60,12 @@ class IndexPosts extends Component {
       })
     }
     return (
-      <Fragment>
+      <div className="after-home">
         <h2>All Resources</h2>
         <div>
           {resourcesJSX}
         </div>
-      </Fragment>
+      </div>
     )
   }
 }

@@ -26,10 +26,8 @@ class ShowPost extends Component {
       .then(() => {
         if (this.state.resource.owner === this.props.user.id) {
           this.setState({ isOwner: true })
-          console.log(this.state.isOwner)
         } else {
           this.setState({ isOwner: false })
-          console.log(this.state.isOwner)
         }
       })
       .then(() => {

@@ -25,9 +25,18 @@ const alwaysOptions = (
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
+  <Navbar bg="dark" variant="dark" expand="md">
     <Navbar.Brand href="#">
-      Project Achilles
+      <img
+        src="https://lh3.googleusercontent.com/dBOw84gNgFn1whGKxIbH1T0Tf_6FO9QDHP0CutU1250vk_JpTtVbd1lvRlSoyK2oMS2f-O_kSISIaj_TRU0JrCnRG-g8fuXeFqMUtpkVj2eloceRens6G2tKbX_nbfmvPZ9AqSq0=s250-p-k"
+        width="50"
+        height="50"
+        className="d-inline-block align-top"
+        alt="logo"
+      />
+    </Navbar.Brand>
+    <Navbar.Brand href="#">
+    Project Achilles
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">

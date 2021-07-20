@@ -21,12 +21,12 @@ class IndexComments extends Component {
       .then(res => this.setState({ comments: res.data.comments }))
       .then(() => msgAlert({
         heading: 'Index Success',
-        message: messages.indexPostsSuccess,
+        message: messages.indexCommentsSuccess,
         variant: 'success'
       }))
       .catch(error => msgAlert({
         heading: 'Index Post Failed with error: ' + error.message,
-        message: messages.indexPostsFailure,
+        message: messages.indexCommentsFailure,
         variant: 'danger'
       })
       )
@@ -35,7 +35,6 @@ class IndexComments extends Component {
   render () {
     let commentsJSX = ''
     const { comments } = this.state
-    console.log(comments)
     if (comments === null) {
       commentsJSX = <Spinner animation="border" variant="warning" />
     } else if (comments.length === 0) {

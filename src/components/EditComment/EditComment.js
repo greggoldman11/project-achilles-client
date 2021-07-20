@@ -20,10 +20,19 @@ class EditComment extends Component {
     }
   }
   componentDidMount () {
-    const { user, match } = this.props
+    const { user, match, msgAlert } = this.props
     showComment(user, match.params)
       .then(res => this.setState({ comment: res.data }))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Show Success',
+        message: messages.showCommentSuccess,
+        variant: 'success'
+      }))
+      .catch(error => msgAlert({
+        heading: 'Show Comment Failed with error: ' + error.message,
+        message: messages.showCommentFailure,
+        variant: 'danger'
+      }))
   }
   handleChange = event => {
     event.persist()

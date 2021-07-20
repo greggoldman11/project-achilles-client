@@ -16,5 +16,11 @@ export default {
   deletPostFailure: 'Failed to delete this post.',
   updatePostSuccess: 'Successfully updated this post!',
   updatePostFailure: 'Failed to update this post.',
-  unauthorizedAccess: 'You are not authorized to access this page.'
+  unauthorizedAccess: 'You are not authorized to access this page.',
+  indexCommentsSuccess: 'Here are all of the comments!',
+  indexCommentsFailure: 'Failed to get all comments.',
+  newCommentSuccess: 'Successfully created a comment!',
+  newCommentFailure: 'Failed to create a comment.',
+  showCommentSuccess: 'Successfully show a comment!',
+  showCommentFailure: 'Failed to show a comment.'
 }

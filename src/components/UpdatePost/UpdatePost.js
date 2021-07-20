@@ -22,11 +22,19 @@ class UpdatePost extends Component {
     }
   }
   componentDidMount () {
-    const { user, match } = this.props
-    console.log(this.props.match)
+    const { user, match, msgAlert } = this.props
     showPost(user, match.params)
       .then(res => this.setState({ resource: res.data.resource }))
-      .catch(console.error)
+      .then(() => msgAlert({
+        heading: 'Show Success',
+        message: messages.showPostSuccess,
+        variant: 'success'
+      }))
+      .catch(error => msgAlert({
+        heading: 'Show Comment Failed with error: ' + error.message,
+        message: messages.showPostFailure,
+        variant: 'danger'
+      }))
   }
   handleChange = event => {
     event.persist()

@@ -15,6 +15,7 @@ import ShowPost from './components/ShowPost/ShowPost'
 import UpdatePost from './components/UpdatePost/UpdatePost'
 import IndexComments from './components/IndexComments/IndexComments'
 import EditComment from './components/EditComment/EditComment'
+import Home from './components/Home/Home'
 
 class App extends Component {
   constructor (props) {
@@ -59,6 +60,9 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/' render={() => (
+            <Home />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
