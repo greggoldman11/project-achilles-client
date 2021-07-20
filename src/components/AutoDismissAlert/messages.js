@@ -5,5 +5,22 @@ export default {
   signInFailure: 'Failed to sign in. Check your email and password and try again.',
   signOutSuccess: 'Come back soon!',
   changePasswordSuccess: 'Password changed successfully!',
-  changePasswordFailure: 'Failed to change passwords. Check your old password and try again.'
+  changePasswordFailure: 'Failed to change password. Check your old password and try again.',
+  newPostSuccess: 'Successfully created a new resource!',
+  newPostFailure: 'Failed to create a post.',
+  indexPostsSuccess: 'Here are all of the posts!',
+  indexPostsFailure: 'Failed to get all posts.',
+  showPostSuccess: 'Here is one of the posts!',
+  showPostFailure: 'Failed to get the post.',
+  deletePostSuccess: 'Successfully deleted this post!',
+  deletPostFailure: 'Failed to delete this post.',
+  updatePostSuccess: 'Successfully updated this post!',
+  updatePostFailure: 'Failed to update this post.',
+  unauthorizedAccess: 'You are not authorized to access this page.',
+  indexCommentsSuccess: 'Here are all of the comments!',
+  indexCommentsFailure: 'Failed to get all comments.',
+  newCommentSuccess: 'Successfully created a comment!',
+  newCommentFailure: 'Failed to create a comment.',
+  showCommentSuccess: 'Successfully show a comment!',
+  showCommentFailure: 'Failed to show a comment.'
 }

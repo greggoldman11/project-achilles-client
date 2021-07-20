@@ -9,6 +9,13 @@ import SignUp from './components/SignUp/SignUp'
 import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
+import NewPost from './components/NewPost/NewPost'
+import IndexPosts from './components/IndexPosts/IndexPosts'
+import ShowPost from './components/ShowPost/ShowPost'
+import UpdatePost from './components/UpdatePost/UpdatePost'
+import IndexComments from './components/IndexComments/IndexComments'
+import EditComment from './components/EditComment/EditComment'
+import Home from './components/Home/Home'
 
 class App extends Component {
   constructor (props) {
@@ -53,6 +60,9 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route exact path='/' render={() => (
+            <Home />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -64,6 +74,24 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/new-post' render={() => (
+            <NewPost msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/resources' render={() => (
+            <IndexPosts msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/resources/:id' render={() => (
+            <ShowPost msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/resources/:id/update' render={({ match }) => (
+            <UpdatePost msgAlert={this.msgAlert} user={user} match={match} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/comments' render={() => (
+            <IndexComments msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/comments/:id' render={({ match }) => (
+            <EditComment msgAlert={this.msgAlert} user={user} match={match} />
           )} />
         </main>
       </Fragment>
