@@ -74,6 +74,15 @@ export const indexComments = user => {
     }
   })
 }
+export const showComment = (user, comment) => {
+  return axios({
+    url: apiUrl + `/comments/${comment.id}`,
+    method: 'GET',
+    headers: {
+      'Authorization': `Token ${user.token}`
+    }
+  })
+}
 export const newComment = (comment, user, resource) => {
   return axios({
     url: apiUrl + '/comments/',

@@ -5,18 +5,15 @@ import { indexPosts } from '../../api/resource'
 import messages from '../AutoDismissAlert/messages'
 
 import Spinner from 'react-bootstrap/Spinner'
-// import Button from 'react-bootstrap/Button'
 
 import ResourceCard from '../ResourceCard/ResourceCard'
-import CommentCard from '../CommentCard/CommentCard'
 
 class IndexPosts extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      resources: null,
-      liked: false
+      resources: null
     }
   }
 
@@ -37,13 +34,9 @@ class IndexPosts extends Component {
       })
       )
   }
-  handleClick = () => this.setState(prevState => {
-    return { liked: !prevState.liked }
-  })
   render () {
     let resourcesJSX = ''
     const { resources } = this.state
-    console.log(resources)
     if (resources === null) {
       resourcesJSX = <Spinner animation="border" variant="warning" />
     } else if (resources.length === 0) {
@@ -61,11 +54,6 @@ class IndexPosts extends Component {
               description={resource.description}
               category={resource.category}
               link={resource.link}
-            />
-            <CommentCard
-              resource={resource.id}
-              user={this.props.user}
-              comments={resource.comments}
             />
           </Fragment>
         )

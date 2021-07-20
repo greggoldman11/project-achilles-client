@@ -14,7 +14,8 @@ class ShowPost extends Component {
 
     this.state = {
       resource: null,
-      isOwner: false
+      isOwner: false,
+      hideComments: false
     }
   }
   componentDidMount () {
@@ -43,6 +44,10 @@ class ShowPost extends Component {
       })
       )
   }
+  toggleComments = () => this.setState(prevState => {
+    return { hideComments: !prevState.hideComments }
+  })
+
   render () {
     let resourceJSX = ''
     const { resource, isOwner } = this.state
@@ -61,7 +66,17 @@ class ShowPost extends Component {
           link={resource.link}
         />
         {isOwner ? <Button><Link className="button-link" to={`/resources/${resource.id}/update`}>Update</Link></Button> : ''}
-        <CommentCard comment={resource.comments}/>
+        <Fragment>
+          <Button onClick={this.toggleComments}>Show Comments</Button>
+          {this.state.hideComments
+            ? <CommentCard
+              resource={resource.id}
+              user={this.props.user}
+              comments={resource.comments}
+            />
+            : ''
+          }
+        </Fragment>
       </Fragment>
     }
     return (

@@ -1,7 +1,9 @@
 import React from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'
+import Button from 'react-bootstrap/Button'
 import NewComment from '../NewComment/NewComment'
+// import EditComment from '../EditComment/EditComment'
 
 const CommentCard = (comment) => (
   <Card className="card" key={comment.id}>
@@ -15,8 +17,9 @@ const CommentCard = (comment) => (
               <br></br>
               --------------
               {comment.body}
-            </p>)
-          }
+              <Button variant="primary"><Link className="button-link" to={`/comments/${comment.id}`}>{comment.body}</Link></Button>
+            </p>
+          )}
         </div>
         <NewComment user={comment.user} resource={comment.resource}/>
       </Card.Text>
