@@ -121,7 +121,7 @@ export const updateComment = (user, comment) => {
     data: {
       comment: {
         name: comment.name,
-        description: comment.body,
+        body: comment.body,
         owner: user.id
       }
     }
